@@ -1,0 +1,10 @@
+<h3>Next {{ league }} races</h3>
+<div class="grid grid-pad">
+    <a *ngFor="let race of races" [routerLink]="['/races', race.league, race.set]" class="col-1-4">
+        <div class="module race">
+            <h4>{{ race.teamOne }} v {{ race.teamTwo }}</h4>
+            <div>Division: {{ race.division }}</div>
+            <div>Set: {{ race.set }}</div>
+        </div>
+    </a>
+</div>

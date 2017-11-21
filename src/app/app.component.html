@@ -1,0 +1,8 @@
+<h1>{{ title }}</h1>
+<nav>
+    <a class="col-1-4" [routerLink]="['/dashboard', 'Northern']" routerLinkActive="active">Northern</a>
+    <a class="col-1-4" [routerLink]="['/dashboard', 'Southern']" routerLinkActive="active">Southern</a>
+    <a class="col-1-4" [routerLink]="['/dashboard', 'Western']" routerLinkActive="active">Western</a>
+    <a class="col-1-4" [routerLink]="['/dashboard', 'Midlands']" routerLinkActive="active">Midlands</a>
+</nav>
+<router-outlet></router-outlet>
