@@ -1,9 +1,9 @@
 <h2>{{ league }} races ({{ set }})</h2>
 <ul class="races">
-  <li *ngFor="let race of races"
-    (click)="onSelect(race)" [class.next]="race.next == true">
+  <li *ngFor="let race of races" (click)="onSelect(race)" [class.next]="race.next == true">
     <span class="badge" [class.next]="race.next == true">{{ race.raceNum }} ({{ race.division }})</span>
-    <span [class.winner]="race.winner == race.teamOne"> {{ race.teamOne }}</span> v <span>{{ race.teamTwo }}</span>
+    <span [class.winner]="race.winner == race.teamOne"> {{ race.teamOne }}</span> v
+    <span [class.winner]="race.winner == race.teamTwo">{{ race.teamTwo }}</span>
   </li>
   <button (click)="goBack()">Back</button>
 </ul>

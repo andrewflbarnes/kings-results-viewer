@@ -1,7 +1,7 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }    from '@angular/forms';
-import { HttpModule }    from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { RaceDetailComponent } from './race-detail.component';
 import { RacesComponent } from './races.component';
@@ -9,7 +9,7 @@ import { DashboardComponent } from './dashboard.component';
 import { RaceService } from './race.service';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent }  from './app.component';
+import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [
@@ -24,7 +24,7 @@ import { AppComponent }  from './app.component';
     RacesComponent,
     DashboardComponent
   ],
-  providers: [ RaceService ],
-  bootstrap: [ AppComponent ]
+  providers: [RaceService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

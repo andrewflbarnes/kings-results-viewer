@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from  '@angular/router'
+import { ActivatedRoute, ParamMap } from '@angular/router'
 import { RaceService } from './race.service';
-import { Race }  from './race';
+import { Race } from './race';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'my-dashboard',
     templateUrl: './dashboard.component.html',
-    styleUrls: [ './dashboard.component.css' ]
+    styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
 
@@ -26,6 +26,6 @@ export class DashboardComponent implements OnInit {
                 return this.raceService.getRaces();
             })
             .subscribe(races => this.races = races.filter(race => race.league == this.league && race.winner == null).slice(0, 4));
-        
+
     }
 }

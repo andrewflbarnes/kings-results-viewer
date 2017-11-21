@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'my-races',
   templateUrl: './races.component.html',
-  styleUrls: [ './races.component.css' ]
+  styleUrls: ['./races.component.css']
 })
 export class RacesComponent implements OnInit {
 
@@ -17,17 +17,17 @@ export class RacesComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private location: Location
-  ) {}
+  ) { }
 
-  races : Race[];
+  races: Race[];
   set: string;
   league: string;
 
   ngOnInit(): void {
-    this.getRaces();
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.league = params.get('league');
       this.set = params.get('set');
+      this.getRaces();
     })
   }
 
@@ -37,12 +37,11 @@ export class RacesComponent implements OnInit {
 
   getRaces(): void {
     this.raceService.getRaces().subscribe(races => {
-      this.races = races;
-      races.forEach(race => console.log(race));
+      this.races = races.filter(race => race.league == this.league && race.set == this.set)
     });
   }
-  
-    goBack(): void {
-      this.location.back();
-    }
+
+  goBack(): void {
+    this.location.back();
+  }
 }

@@ -9,17 +9,17 @@ import 'rxjs/add/operator/switchMap';
 @Component({
   selector: 'race-detail',
   templateUrl: './race-detail.component.html',
-  styleUrls: [ './race-detail.component.css' ]
+  styleUrls: ['./race-detail.component.css']
 })
 export class RaceDetailComponent implements OnInit {
-  
-    @Input() race: Race
-  
-    constructor(
-      private raceService: RaceService,
-      private route: ActivatedRoute,
-      private location: Location
-    ) { }
+
+  @Input() race: Race
+
+  constructor(
+    private raceService: RaceService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap
