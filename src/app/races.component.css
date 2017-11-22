@@ -49,6 +49,7 @@
   }
   .winner {
     color: #0B0;
+    font-weight: bold;
   }
   .next {
     background-color: #0B0 !important;
