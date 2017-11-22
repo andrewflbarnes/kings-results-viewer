@@ -1,28 +1,26 @@
-h1 {
+  h1 {
     font-size: 1.2em;
-    color: #ccc;
+    margin-bottom: 0;
+    text-align: center;
+  }
+  a.active h4 {
+    color: #039be5;
+  }
+  a {
+    text-decoration: none;
+  }
+  *, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  h3 {
+    text-align: center;
     margin-bottom: 0;
   }
-  h2 {
-    font-size: 2em;
-    margin-top: 0;
-    padding-top: 0;
+  h4 {
+    position: relative;
   }
-  nav a {
-    padding: 5px 10px;
-    text-decoration: none;
-    margin-top: 10px;
-    display: inline-block;
-    background-color: #eee;
-    border-radius: 4px;
-  }
-  nav a:visited, a:link {
-    color: #607D8B;
-  }
-  nav a:hover {
-    color: #039be5;
-    background-color: #CFD8DC;
-  }
-  nav a.active {
-    color: #039be5;
+  .module {
+    padding: 1px;
   }
