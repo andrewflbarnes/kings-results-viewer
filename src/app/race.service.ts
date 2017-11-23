@@ -1,23 +1,28 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { Race } from './race';
-// import { RACES } from './mock-races';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
-export class RaceService {
+export class RaceService implements OnInit{
     private url: string = 'http://localhost:8080/races';
+    public races$: BehaviorSubject<Race[]> = new BehaviorSubject([]);
 
     constructor(
         private http: Http
     ) { }
 
-    getRaces(): Observable<Race[]> {
-        return this.http.get(this.url)
-            .map(res => res.json());
+    ngOnInit(): void {
+        this.updateRaces();
+    }
+
+    updateRaces(): void {
+        let races = this.http.get(this.url)
+            .map(res => res.json())
+            .subscribe(races => this.races$.next(races));
     }
 
     getRace(id: number): Observable<Race> {

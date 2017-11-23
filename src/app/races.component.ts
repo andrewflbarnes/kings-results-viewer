@@ -4,6 +4,7 @@ import { Race } from './race';
 import { RaceService } from './race.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'my-races',
@@ -27,18 +28,23 @@ export class RacesComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.league = params.get('league');
       this.set = params.get('set');
-      this.getRaces();
-    })
+    });
+
+    this.refreshData();
+    this.raceService.races$.subscribe(races => {
+      this.races = races.filter(race => race.league == this.league && race.set == this.set);
+    });
+    
+    let timer = Observable.timer(5000, 5000);
+    timer.subscribe(t => this.refreshData());
+  }
+
+  refreshData(): void {
+    this.raceService.updateRaces();
   }
 
   onSelect(race: Race): void {
     this.router.navigate(['/detail', race.raceId]);
-  }
-
-  getRaces(): void {
-    this.raceService.getRaces().subscribe(races => {
-      this.races = races.filter(race => race.league == this.league && race.set == this.set)
-    });
   }
 
   goBack(): void {
