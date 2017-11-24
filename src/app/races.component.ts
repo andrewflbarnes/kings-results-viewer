@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
+import { OnInit, OnDestroy, } from '@angular/core';
 import { Race } from './race';
 import { RaceService } from './race.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
-import { Observable } from 'rxjs/Rx';
+import { Observable, Subscription } from 'rxjs/Rx';
+import { TimerObservable } from 'rxjs/observable/TimerObservable';
 
 @Component({
   selector: 'my-races',
@@ -23,6 +24,8 @@ export class RacesComponent implements OnInit {
   races: Race[];
   set: string;
   league: string;
+  timerSubscription: Subscription;
+  raceSubscription: Subscription;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -31,12 +34,18 @@ export class RacesComponent implements OnInit {
     });
 
     this.refreshData();
-    this.raceService.races$.subscribe(races => {
+    this.raceSubscription = this.raceService.races$.subscribe(races => {
       this.races = races.filter(race => race.league == this.league && race.set == this.set);
     });
-    
+
     let timer = Observable.timer(5000, 5000);
-    timer.subscribe(t => this.refreshData());
+    this.timerSubscription = timer.subscribe(t => {
+      this.refreshData();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe();
   }
 
   refreshData(): void {
@@ -49,5 +58,14 @@ export class RacesComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  unsubscribe(): void {
+    if (this.raceSubscription != null) {
+      this.raceSubscription.unsubscribe();
+    }
+    if (this.timerSubscription != null) {
+      this.timerSubscription.unsubscribe();
+    }
   }
 }

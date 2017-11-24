@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class RaceService implements OnInit{
-    private url: string = 'http://localhost:8080/races';
+    private url: string = 'http://kingsski.club/races/';
     public races$: BehaviorSubject<Race[]> = new BehaviorSubject([]);
 
     constructor(
